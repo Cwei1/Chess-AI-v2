@@ -66,6 +66,10 @@ public class Queen extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "Q";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(3,3);
 		Queen night = new Queen(0, test);

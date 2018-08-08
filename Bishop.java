@@ -42,6 +42,10 @@ public class Bishop extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "B";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(3,3);
 		Bishop night = new Bishop(0, test);

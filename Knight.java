@@ -22,6 +22,10 @@ public class Knight extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "O";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(1,1);
 		Knight night = new Knight(1, test);

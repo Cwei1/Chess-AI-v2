@@ -32,6 +32,10 @@ public class Pawn extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "P";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(1,1);
 		Pawn night = new Pawn(0, test);

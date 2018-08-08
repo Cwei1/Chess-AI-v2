@@ -22,6 +22,10 @@ public class King extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "K";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(3,3);
 		King night = new King(0, test);

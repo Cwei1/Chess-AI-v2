@@ -38,6 +38,10 @@ public class Rook extends Piece{
 		return posmoves;
 	}
 
+	public String toString(){
+		return "R";
+	}
+
 	public static void main(String[] args){
 		Coordinate test = new Coordinate(3,3);
 		Rook night = new Rook(0, test);
