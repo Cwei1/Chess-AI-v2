@@ -1,11 +1,15 @@
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class Rook extends Piece{
 
 	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public int Owner;
 
 	public Rook(int owner, Coordinate z){
 		super(owner, z);
+		Owner = owner;
 	}
 
 	public List<Coordinate> allMoves(){
@@ -40,6 +44,21 @@ public class Rook extends Piece{
 
 	public String toString(){
 		return "R";
+	}
+
+	public int retOwner(){
+		return Owner;
+	}
+
+	public ImageIcon getImage(){
+		ImageIcon icon;
+		if (retOwner() == 0){
+			icon = new ImageIcon("Pics/wrook.png", "Test");
+		}
+		else{
+			icon = new ImageIcon("Pics/brook.png", "Test");
+		}
+		return icon;
 	}
 
 	public static void main(String[] args){

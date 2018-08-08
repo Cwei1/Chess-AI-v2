@@ -1,11 +1,15 @@
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class Pawn extends Piece{
 
 	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public int Owner;
 
 	public Pawn(int owner, Coordinate z){
 		super(owner, z);
+		Owner = owner;
 	}
 
 	public List<Coordinate> allMoves(){
@@ -34,6 +38,21 @@ public class Pawn extends Piece{
 
 	public String toString(){
 		return "P";
+	}
+
+	public int retOwner(){
+		return Owner;
+	}
+
+	public ImageIcon getImage(){
+		ImageIcon icon;
+		if (retOwner() == 0){
+			icon = new ImageIcon("Pics/wpawn.png", "Test");
+		}
+		else{
+			icon = new ImageIcon("Pics/bpawn.png", "Test");
+		}
+		return icon;
 	}
 
 	public static void main(String[] args){

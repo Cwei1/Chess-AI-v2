@@ -7,8 +7,26 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import javax.swing.ImageIcon;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.concurrent.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 
 public class GameBoard{
+
+	private String letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private JPanel mainboard;
+
+    private JFrame frame=new JFrame();
+    private Color black=new Color(139,69,19);
+    private Color white=new Color(244,164,96);
+    private Color now=white;
+    public JButton[][] pattern = new JButton[8][8];
 
 	public Piece[][] board;
 
@@ -70,9 +88,70 @@ public class GameBoard{
 		board[7][4] = newKing2;
 	}
 
+	public Piece getPiece(Coordinate z){
+		return board[z.ycord()][z.xcord()];
+	}
+
+	private void initComponents() {
+		GridLayout grid1=new GridLayout(1, 8);
+		GridLayout grid2=new GridLayout(8, 1);
+		GridLayout grid3=new GridLayout(8,8);
+		JPanel panel1=new JPanel();
+		JPanel panel2=new JPanel();
+		JPanel panel3=new JPanel();
+		JPanel panel4=new JPanel();
+		panel1.setLayout(grid1);
+		panel2.setLayout(grid2);
+		panel3.setLayout(grid1);
+		panel4.setLayout(grid2);
+		panel1.add(new JPanel());
+		panel3.add(new JPanel());	
+		mainboard = new JPanel();
+		mainboard.setLayout(grid3);
+		for (int y = 0; y < 8; y++){
+			for(int x = 0;x < 8; x++){
+				pattern[x][7-y] = new JButton();
+				ImageIcon icon=getPiece(new Coordinate(x,7-y)).getImage();
+				pattern[x][7-y].setIcon(icon);
+				pattern[x][7-y].setPreferredSize(new Dimension(75, 75));
+				// pattern[x][7-y].addActionListener();
+				pattern[x][7-y].setBackground(now);
+				if(now.equals(white)){
+				    now=black;
+				}
+				else{
+				    now=white;
+				}
+				mainboard.add(pattern[x][7-y]);		
+		    }
+		    if(now.equals(white)){
+				now=black;
+		    }
+		    else{
+				now=white;
+		    }
+			panel1.add(new JLabel("  "+letters.substring(y,y+1)+"  "));
+		    panel2.add(new JLabel(Integer.toString(8-y)));
+		    panel3.add(new JLabel("  "+letters.substring(y,y+1)+"  "));
+		    panel4.add(new JLabel(Integer.toString(8-y)));
+		}
+		frame.setTitle("Chess");
+		frame.getContentPane().add(BorderLayout.CENTER, mainboard);
+		frame.getContentPane().add(BorderLayout.NORTH, panel1);
+		frame.getContentPane().add(BorderLayout.WEST, panel2);
+		frame.getContentPane().add(BorderLayout.SOUTH, panel3);
+		frame.getContentPane().add(BorderLayout.EAST, panel4);
+		frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		frame.setSize(675, 700);
+		frame.setLocation(100, 0);
+		frame.setVisible(true);
+		frame.setResizable(false);
+    } 
+
 	public static void main(String[] args){
 		GameBoard newboard = new GameBoard();
 		newboard.initboard();
+		newboard.initComponents();
 		for (int i = 7; i >= 0; i--){
 			System.out.println(Arrays.toString(newboard.retBoard()[i]));
 		}

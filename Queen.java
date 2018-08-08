@@ -1,11 +1,15 @@
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class Queen extends Piece{
 
 	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public int Owner;
 
 	public Queen(int owner, Coordinate z){
 		super(owner, z);
+		Owner = owner;
 	}
 
 	public List<Coordinate> allMoves(){
@@ -68,6 +72,21 @@ public class Queen extends Piece{
 
 	public String toString(){
 		return "Q";
+	}
+
+	public int retOwner(){
+		return Owner;
+	}
+
+	public ImageIcon getImage(){
+		ImageIcon icon;
+		if (retOwner() == 0){
+			icon = new ImageIcon("Pics/wqueen.png", "Test");
+		}
+		else{
+			icon = new ImageIcon("Pics/bqueen.png", "Test");
+		}
+		return icon;
 	}
 
 	public static void main(String[] args){

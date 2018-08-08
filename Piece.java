@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 public class Piece implements Cloneable, Serializable{
 	int owner;
 	Coordinate location;
+	ImageIcon icon;
 
 	public Piece(int whoowns, Coordinate z){
 		owner = whoowns;
@@ -23,5 +24,9 @@ public class Piece implements Cloneable, Serializable{
 
 	public int rety(){
 		return location.ycord();
+	}
+
+	public ImageIcon getImage(){
+		return icon;
 	}
 }
