@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 
-public class GameBoard{
+public class GameBoard extends JFrame implements ActionListener{
 
 	private String letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private JPanel mainboard;
@@ -114,7 +114,7 @@ public class GameBoard{
 				ImageIcon icon=getPiece(new Coordinate(x,7-y)).getImage();
 				pattern[x][7-y].setIcon(icon);
 				pattern[x][7-y].setPreferredSize(new Dimension(75, 75));
-				// pattern[x][7-y].addActionListener();
+				pattern[x][7-y].addActionListener(this);
 				pattern[x][7-y].setBackground(now);
 				if(now.equals(white)){
 				    now=black;
@@ -147,6 +147,16 @@ public class GameBoard{
 		frame.setVisible(true);
 		frame.setResizable(false);
     } 
+
+    public void actionPerformed(ActionEvent e){
+    	for (int x = 0; x < 8;x++){
+    		for (int y = 0; y < 8;y++){
+    			if (e.getSource() == pattern[x][y]){
+    				System.out.println(board[x][y].allMoves());
+    			}
+    		}
+    	}	
+    }
 
 	public static void main(String[] args){
 		GameBoard newboard = new GameBoard();
