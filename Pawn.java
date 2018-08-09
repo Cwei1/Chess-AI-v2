@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Pawn extends Piece{
 
-	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public List<Coordinate> posmoves;
 	public int Owner;
 
 	public Pawn(int owner, Coordinate z){
@@ -13,9 +13,10 @@ public class Pawn extends Piece{
 	}
 
 	public List<Coordinate> allMoves(){
+		posmoves = new ArrayList<Coordinate>();
 		int currx = retx();
 		int curry = rety();
-		if (owner == 0){
+		if (Owner == 0){
 			if (curry == 1){
 				posmoves.add(new Coordinate(currx, curry + 1));
 				posmoves.add(new Coordinate(currx, curry + 2));

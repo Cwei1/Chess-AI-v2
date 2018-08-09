@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Rook extends Piece{
 
-	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public List<Coordinate> posmoves;
 	public int Owner;
 
 	public Rook(int owner, Coordinate z){
@@ -13,6 +13,7 @@ public class Rook extends Piece{
 	}
 
 	public List<Coordinate> allMoves(){
+		posmoves = new ArrayList<Coordinate>();
 		int currx = retx();
 		int curry = rety();
 		int tempx = currx;

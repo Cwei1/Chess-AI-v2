@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class King extends Piece{
 
-	public List<Coordinate> posmoves = new ArrayList<Coordinate>();
+	public List<Coordinate> posmoves;;
 	public int Owner;
 
 	public King(int owner, Coordinate z){
@@ -13,6 +13,7 @@ public class King extends Piece{
 	}
 
 	public List<Coordinate> allMoves(){
+		posmoves = new ArrayList<Coordinate>();
 		int currx = retx();
 		int curry = rety();
 		posmoves.add(new Coordinate(currx+1, curry));

@@ -148,11 +148,41 @@ public class GameBoard extends JFrame implements ActionListener{
 		frame.setResizable(false);
     } 
 
+    public void resetBackground(){
+    	for (int y = 0; y < 8; y++){
+			for(int x = 0;x < 8; x++){
+				pattern[x][7-y].setBackground(now);
+				if(now.equals(white)){
+				    now=black;
+				}
+				else{
+				    now=white;
+				}
+				mainboard.add(pattern[x][7-y]);		
+		    }
+		    if(now.equals(white)){
+				now=black;
+		    }
+		    else{
+				now=white;
+		    }
+		}
+    }
+
     public void actionPerformed(ActionEvent e){
     	for (int x = 0; x < 8;x++){
     		for (int y = 0; y < 8;y++){
     			if (e.getSource() == pattern[x][y]){
-    				System.out.println(board[x][y].allMoves());
+
+    				now = pattern[x][y].getBackground();
+    				pattern[x][y].setBackground(Color.GREEN);
+    				List<Coordinate> moves = board[y][x].allMoves();
+    				System.out.println(moves);
+    				for (Coordinate move: moves){
+    					if ((move.xcord() >= 0 && move.xcord() <= 7 && move.ycord() >= 0 && move.ycord() <= 7) && (board[move.ycord()][move.xcord()] instanceof NullPiece)){
+    						pattern[move.xcord()][move.ycord()].setBackground(Color.GREEN);
+    					}
+    				}
     			}
     		}
     	}	
